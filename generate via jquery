@@ -1,0 +1,10 @@
+<script src="https://cdn.rawgit.com/igorescobar/jQuery-Mask-Plugin/1ef022ab/dist/jquery.mask.min.js"></script>
+
+<!-- via jquery -->
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Format mata uang.
+    $( '.uang' ).mask('0.000.000.000', {reverse: true});
+})
+</script>
+<!-- ---------- -->
