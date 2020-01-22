@@ -1,0 +1,60 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+    // Format mata uang.
+    $( '.generate_Class' ).mask('0.000.000.000', {reverse: true});
+
+    });   
+    function proses_(hp,akm){
+    var h = $(hp).val().split('.').join('').toString();
+    var a = $(akm).val().split('.').join('').toString();
+    var buku = (parseInt(h) - parseInt(a));
+    $('.nilai_buku').val(convertRupiah(buku.toString()));
+      
+    }
+</script>
+<!-- ---------- -->
+
+
+// yg di bawah script kemaren , dibutuhkan untuk convert buku 
+
+<!-- generate input text -->
+<script type="text/javascript">
+var rupiah1 = document.getElementById("generate_");
+rupiah1.addEventListener("keyup", function(e) {
+  rupiah1.value = convertRupiah(this.value);
+});
+rupiah1.addEventListener('keydown', function(event) {
+    return isNumberKey(event);
+});
+ 
+ 
+function convertRupiah(angka, prefix) {
+  var number_string = angka.replace(/[^,\d]/g, "").toString(),
+    split  = number_string.split(","),
+    sisa   = split[0].length % 3,
+    rupiah = split[0].substr(0, sisa),
+    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+ 
+    if (ribuan) {
+        separator = sisa ? "." : "";
+        rupiah += separator + ribuan.join(".");
+    }
+ 
+    rupiah = split[1] != undefined ? rupiah + "," + split[1] : rupiah;
+    return prefix == undefined ? rupiah : rupiah ? prefix + rupiah : "";
+}
+ 
+function isNumberKey(evt) {
+    key = evt.which || evt.keyCode;
+    if (    key != 188 // Comma
+         && key != 8 // Backspace
+         && key != 17 && key != 86 & key != 67 // Ctrl c, ctrl v
+         && (key < 48 || key > 57) // Non digit
+        ) 
+    {
+        evt.preventDefault();
+        return;
+    }
+}
+</script>
+<!-- ------------------- -->
